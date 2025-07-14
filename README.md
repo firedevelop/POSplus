@@ -3,7 +3,7 @@
 
 <div align="center">
 
-![POS Plus Logo](public/images/logo.svg)
+<img src="public/images/logo.svg" alt="POS Plus Logo" width="120"/>
 
 **A modern Point of Sale (POS) application built with React, TypeScript and Tailwind CSS**
 
@@ -23,8 +23,8 @@
 <img src="public/images/screen-005.png" alt="POS plus Screenshot 2" width="700"/>
 <img src="public/images/screen-006.png" alt="POS plus Screenshot 3" width="700"/>
 <img src="public/images/screen-007.png" alt="POS plus Screenshot 4" width="700"/>
-<img src="public/images/screen-008.png" alt="POS plus Screenshot 5" width="700"/>
-<img src="public/images/screen-009.png" alt="POS plus Screenshot 6" width="700"/></p>
+<img src="public/images/screen-008.png" alt="POS plus Screenshot 5" width="300"/>
+<img src="public/images/screen-009.png" alt="POS plus Screenshot 6" width="300"/></p>
 
 ## Custom templates
 <p>
