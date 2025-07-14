@@ -35,5 +35,18 @@ export default {
   contactEnviar: "Senden",
   creditsTitulo: "Credits",
   creditsDescripcion: "Entwickelt von Ihrem Team. Bilder von Unsplash und Pexels. Tipify © 2025.",
+  ticket: {
+    title: "BELEG",
+    header: "POS +",
+    salesTicket: "VERKAUFSBELEG",
+    subtotal: "ZWISCHENSUMME:",
+    discount: "RABATT",
+    tip: "TRINKGELD",
+    total: "GESAMT:",
+    thankYou: "VIELEN DANK FÜR IHREN KAUF!",
+    ticketNumber: "BELEG #",
+    remove: "[ENTFERNEN]",
+    quantity: "x"
+  }
   // ...weitere Texte
 }

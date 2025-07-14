@@ -27,24 +27,6 @@ export default function OrderTotals({
 
   return (
     <>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-black">Totales y Propina:</h2>
-        <p>
-          Subtotal a pagar: {''}
-          <span className="font-bold">{formatCurrency(subTotalAmmount)}</span>
-        </p>
-
-        <p>
-          Propina: {''}
-          <span className="font-bold">{formatCurrency(tipAmount)}</span>
-        </p>
-
-        <p>
-          Total a pagar: {''}
-          <span className="font-bold">{formatCurrency(totalAmount)}</span>
-        </p>
-      </div>
-
       <button
         type="button"
         className="w-full bg-stripe-blue text-white font-semibold py-2 rounded-lg shadow-sm hover:bg-stripe-dark transition-colors focus:outline-none focus:ring-2 focus:ring-stripe-blue focus:ring-offset-2"

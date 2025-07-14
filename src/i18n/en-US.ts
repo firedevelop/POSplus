@@ -35,5 +35,18 @@ export default {
   orderSaved: "Order saved!",
   orderIs: "Your order number is:",
   backHome: "Back to home",
+  ticket: {
+    title: "RECEIPT",
+    header: "POS +",
+    salesTicket: "SALES RECEIPT",
+    subtotal: "SUBTOTAL:",
+    discount: "DISCOUNT",
+    tip: "TIP",
+    total: "TOTAL:",
+    thankYou: "THANK YOU FOR YOUR PURCHASE!",
+    ticketNumber: "RECEIPT #",
+    remove: "[REMOVE]",
+    quantity: "x"
+  }
   // ...other texts
 }

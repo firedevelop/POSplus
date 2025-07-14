@@ -35,5 +35,18 @@ export default {
   orderSaved: "Ordine salvato!",
   orderIs: "Il tuo numero d'ordine è:",
   backHome: "Torna alla home",
+  ticket: {
+    title: "SCONTRINO",
+    header: "POS +",
+    salesTicket: "SCONTRINO DI VENDITA",
+    subtotal: "SUBTOTALE:",
+    discount: "SCONTO",
+    tip: "MANCIA",
+    total: "TOTALE:",
+    thankYou: "GRAZIE PER IL TUO ACQUISTO!",
+    ticketNumber: "SCONTRINO #",
+    remove: "[RIMUOVI]",
+    quantity: "x"
+  }
   // ...altri testi
 }
