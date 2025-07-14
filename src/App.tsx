@@ -42,7 +42,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-stripe-gray font-sans flex flex-col py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-stripe-white font-sans flex flex-col py-8 px-4 sm:px-6 lg:px-8">
         {/* --- Menú de navegación superior --- */}
         <nav className="w-full mb-8 flex flex-wrap items-center justify-between text-base sm:text-lg font-medium">
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
@@ -147,8 +147,7 @@ function App() {
           </div>
         </nav>
         {/* --- Fin menú navegación superior --- */}
-
-        <div className="w-full bg-white shadow-xl rounded-3xl p-4 sm:p-10 lg:p-16 border border-stripe-gray2">
+        
           <Routes>
             <Route
               path="/"
@@ -202,7 +201,7 @@ function App() {
             <Route path="/compartir" element={<Compartir t={t} />} />
             <Route path="/confirmacion" element={<OrderConfirmation t={t} />} />
           </Routes>
-        </div>
+
         {/* Footer solo para Credits */}
         <footer className="w-full mt-8 flex flex-col items-center">
   <div className="flex items-center gap-3 text-lg text-stripe-gray3 font-medium">

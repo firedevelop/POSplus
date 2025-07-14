@@ -21,6 +21,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
   const navigate = useNavigate()
 
   const tipOptions = [
+    { id: 'tip-0', value: 0, label: '0%' },
     { id: 'tip-5', value: 5, label: '5%' },
     { id: 'tip-10', value: 10, label: '10%' },
     { id: 'tip-25', value: 25, label: '25%' },
@@ -29,6 +30,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
   ]
 
   const discountOptions = [
+    { id: 'discount-0', value: 0, label: '0%' },
     { id: 'discount-5', value: 5, label: '5%' },
     { id: 'discount-10', value: 10, label: '10%' },
     { id: 'discount-15', value: 15, label: '15%' },
@@ -47,14 +49,14 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
             <span className="font-bold text-lg">{formatCurrency(subTotal)}</span>
           </div>
           {discount > 0 && (
-            <div className="flex justify-between items-center text-green-600">
+            <div className="flex justify-between items-center text-red-600">
               <span>Descuento ({discount}%):</span>
               <span className="font-bold text-lg">-{formatCurrency(discountAmount)}</span>
             </div>
           )}
           <div className="flex justify-between items-center">
             <span className="text-stripe-gray3">Propina:</span>
-            <span className="font-bold text-lg">{formatCurrency(tipAmount)}</span>
+            <span className="font-bold text-lg text-green-600">{formatCurrency(tipAmount)}</span>
           </div>
           <hr className="border-stripe-gray2" />
           <div className="flex justify-between items-center">
@@ -83,11 +85,13 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
               />
               <label
                 htmlFor={option.id}
-                className="block px-4 py-2 rounded-lg border border-green-600 text-green-600 font-semibold cursor-pointer transition-colors
-                  peer-checked:bg-green-600 peer-checked:text-white peer-checked:border-green-600
-                  hover:bg-green-600/10"
+                className={`block px-4 py-2 rounded-lg border font-semibold cursor-pointer transition-colors ${
+                  option.value === 0 
+                    ? 'border-gray-400 text-gray-600 peer-checked:bg-gray-500 peer-checked:text-white peer-checked:border-gray-500 hover:bg-gray-500/10'
+                    : 'border-red-600 text-red-600 peer-checked:bg-red-600 peer-checked:text-white peer-checked:border-red-600 hover:bg-red-600/10'
+                }`}
               >
-                {option.label}
+                {option.value === 0 ? '0%' : `-${option.label}`}
               </label>
             </div>
           ))}
@@ -103,7 +107,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
                 dispatch({ type: 'add-discount', payload: { value: value === '' ? 0 : Number(value) } })
               }
             }}
-            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition"
+            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition"
             placeholder="Otro"
           />
         </form>
@@ -128,11 +132,13 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
               />
               <label
                 htmlFor={option.id}
-                className="block px-4 py-2 rounded-lg border border-stripe-blue text-stripe-blue font-semibold cursor-pointer transition-colors
-                  peer-checked:bg-stripe-blue peer-checked:text-white peer-checked:border-stripe-blue
-                  hover:bg-stripe-blue/10"
+                className={`block px-4 py-2 rounded-lg border font-semibold cursor-pointer transition-colors ${
+                  option.value === 0 
+                    ? 'border-gray-400 text-gray-600 peer-checked:bg-gray-500 peer-checked:text-white peer-checked:border-gray-500 hover:bg-gray-500/10'
+                    : 'border-green-600 text-green-600 peer-checked:bg-green-600 peer-checked:text-white peer-checked:border-green-600 hover:bg-green-600/10'
+                }`}
               >
-                {option.label}
+                {option.value === 0 ? '0%' : `+${option.label}`}
               </label>
             </div>
           ))}
@@ -148,7 +154,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
                 dispatch({ type: 'add-tip', payload: { value: value === '' ? 0 : Number(value) } })
               }
             }}
-            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-stripe-blue focus:border-stripe-blue transition"
+            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition"
             placeholder="Otro"
           />
         </form>
