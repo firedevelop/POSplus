@@ -2,8 +2,6 @@ import { useReducer, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import MenuItem from './components/MenuItem'
 import OrderContents from './components/OrderContents'
-import OrderTotals from './components/OrderTotals'
-import TipPercentageForm from './components/TipPercentageForm'
 import { initialState, orderReducer } from './reducers/order-reducer'
 import Plans from './pages/Plans'
 import Contact from './pages/Contact'
@@ -186,13 +184,6 @@ function App() {
                     {state.order.length ? (
                       <>
                         <OrderContents order={state.order} dispatch={dispatch} t={t} tip={state.tip} />
-                        <TipPercentageForm dispatch={dispatch} tip={state.tip} t={t} />
-                        <OrderTotals
-                          order={state.order}
-                          tip={state.tip}
-                          dispatch={dispatch}
-                        />
-                        {/* Elimina el botón duplicado aquí */}
                       </>
                     ) : (
                       <div className="flex flex-1 items-center justify-center h-full">
