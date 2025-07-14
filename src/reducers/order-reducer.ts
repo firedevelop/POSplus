@@ -5,16 +5,19 @@ export type OrderActions =
   | { type: 'remove-item'; payload: { id: MenuItem['id'] } }
   | { type: 'place-order' }
   | { type: 'add-tip'; payload: { value: number } }
+  | { type: 'add-discount'; payload: { value: number } }
   | { type: 'reset-order' }
 
 export type OrderState = {
   order: OrderItem[]
   tip: number
+  discount: number
 }
 
 export const initialState: OrderState = {
   order: [],
   tip: 0,
+  discount: 0,
 }
 
 export const orderReducer = (
@@ -55,6 +58,7 @@ export const orderReducer = (
       ...state,
       order: [],
       tip: 0,
+      discount: 0,
     }
   }
 
@@ -66,11 +70,20 @@ export const orderReducer = (
     }
   }
 
+  if (action.type === 'add-discount') {
+    const discount = action.payload.value
+    return {
+      ...state,
+      discount,
+    }
+  }
+
   if (action.type === 'reset-order') {
     return {
       ...state,
       order: [],
       tip: 0,
+      discount: 0,
     }
   }
 

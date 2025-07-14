@@ -9,12 +9,15 @@ interface OrderContentsProps {
   dispatch: Dispatch<OrderActions>
   t: any
   tip?: number
+  discount?: number
 }
 
-const OrderContents = ({ order, dispatch, t, tip = 0 }: OrderContentsProps) => {
+const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderContentsProps) => {
   const subTotal = order.reduce((total, item) => total + item.quantity * item.price, 0)
-  const tipAmount = subTotal * (tip / 100)
-  const total = subTotal + tipAmount
+  const discountAmount = subTotal * (discount / 100)
+  const discountedSubTotal = subTotal - discountAmount
+  const tipAmount = discountedSubTotal * (tip / 100)
+  const total = discountedSubTotal + tipAmount
   const navigate = useNavigate()
 
   const tipOptions = [
@@ -23,6 +26,14 @@ const OrderContents = ({ order, dispatch, t, tip = 0 }: OrderContentsProps) => {
     { id: 'tip-25', value: 25, label: '25%' },
     { id: 'tip-50', value: 50, label: '50%' },
     { id: 'tip-100', value: 100, label: '100%' },
+  ]
+
+  const discountOptions = [
+    { id: 'discount-5', value: 5, label: '5%' },
+    { id: 'discount-10', value: 10, label: '10%' },
+    { id: 'discount-15', value: 15, label: '15%' },
+    { id: 'discount-20', value: 20, label: '20%' },
+    { id: 'discount-25', value: 25, label: '25%' },
   ]
 
   return (
@@ -35,6 +46,12 @@ const OrderContents = ({ order, dispatch, t, tip = 0 }: OrderContentsProps) => {
             <span className="text-stripe-gray3">Subtotal:</span>
             <span className="font-bold text-lg">{formatCurrency(subTotal)}</span>
           </div>
+          {discount > 0 && (
+            <div className="flex justify-between items-center text-green-600">
+              <span>Descuento ({discount}%):</span>
+              <span className="font-bold text-lg">-{formatCurrency(discountAmount)}</span>
+            </div>
+          )}
           <div className="flex justify-between items-center">
             <span className="text-stripe-gray3">Propina:</span>
             <span className="font-bold text-lg">{formatCurrency(tipAmount)}</span>
@@ -45,6 +62,51 @@ const OrderContents = ({ order, dispatch, t, tip = 0 }: OrderContentsProps) => {
             <span className="text-2xl font-black text-stripe-blue">{formatCurrency(total)}</span>
           </div>
         </div>
+      </div>
+
+      {/* Formulario de descuentos */}
+      <div className="mb-6 space-y-5">
+        <label className="block text-stripe-dark font-medium mb-1 text-lg">
+          Porcentaje de descuento
+        </label>
+        <form className="flex flex-wrap gap-2 items-center" onSubmit={e => e.preventDefault()}>
+          {discountOptions.map((option) => (
+            <div key={option.id} className="relative">
+              <input
+                className="peer absolute opacity-0 w-0 h-0"
+                type="radio"
+                id={option.id}
+                name="discount"
+                value={option.value}
+                checked={discount === option.value}
+                onChange={() => dispatch({ type: 'add-discount', payload: { value: option.value } })}
+              />
+              <label
+                htmlFor={option.id}
+                className="block px-4 py-2 rounded-lg border border-green-600 text-green-600 font-semibold cursor-pointer transition-colors
+                  peer-checked:bg-green-600 peer-checked:text-white peer-checked:border-green-600
+                  hover:bg-green-600/10"
+              >
+                {option.label}
+              </label>
+            </div>
+          ))}
+          <input
+            type="number"
+            min={0}
+            max={100}
+            step={1}
+            value={discount === 0 ? '' : discount}
+            onChange={(e) => {
+              const value = e.target.value
+              if (/^\d{0,3}$/.test(value)) {
+                dispatch({ type: 'add-discount', payload: { value: value === '' ? 0 : Number(value) } })
+              }
+            }}
+            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition"
+            placeholder="Otro"
+          />
+        </form>
       </div>
 
       {/* Formulario de propina */}
