@@ -180,7 +180,7 @@ function App() {
               className={`flex items-center gap-2 transition-colors text-gray-800 hover:${currentTemplate.colors.text}`}
             >
               <img
-                src="/public/images/logo.svg"
+                src="/images/logo.svg"
                 alt="POS plus Logo"
                 className="h-12 w-auto drop-shadow-md transition-all duration-300"
                 style={{ filter: getLogoFilter() }}
