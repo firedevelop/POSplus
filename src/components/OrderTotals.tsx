@@ -28,7 +28,10 @@ export default function OrderTotals({
   return (
     <>
       <div className="space-y-3">
-        <h2 className="text-2xl font-black">Totales y Propina:</h2>
+        <p>
+          <h2 className="text-2xl font-black">Total: {''}{formatCurrency(totalAmount)}</h2> 
+          <span className="font-bold"></span>
+        </p>        
         <p>
           Subtotal a pagar: {''}
           <span className="font-bold">{formatCurrency(subTotalAmmount)}</span>
@@ -39,10 +42,7 @@ export default function OrderTotals({
           <span className="font-bold">{formatCurrency(tipAmount)}</span>
         </p>
 
-        <p>
-          Total a pagar: {''}
-          <span className="font-bold">{formatCurrency(totalAmount)}</span>
-        </p>
+
       </div>
 
       <button
