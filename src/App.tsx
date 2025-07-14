@@ -153,6 +153,20 @@ function App() {
               path="/"
               element={
                 <main className="grid grid-cols-1 gap-6 lg:gap-10 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+                  <section className="w-full p-4 sm:p-6 lg:p-8 bg-stripe-gray rounded-2xl shadow hover:shadow-lg transition-shadow border border-stripe-gray2 flex flex-col justify-between lg:col-span-1 xl:col-span-1 2xl:col-span-1">
+                    {state.order.length ? (
+                      <>
+                        <OrderContents order={state.order} dispatch={dispatch} t={t} tip={state.tip} discount={state.discount} />
+                      </>
+                    ) : (
+                      <div className="flex flex-1 items-center justify-center h-full">
+                        <p className="text-center text-stripe-gray3 text-lg">
+                          {t.emptyOrder}
+                        </p>
+                      </div>
+                    )}
+                  </section>
+
                   <section className="w-full p-4 sm:p-6 lg:p-8 bg-stripe-gray rounded-2xl shadow hover:shadow-lg transition-shadow border border-stripe-gray2 lg:col-span-2 xl:col-span-2 2xl:col-span-3">
                     <h2 className="text-2xl md:text-3xl font-bold text-stripe-dark mb-6 flex items-center gap-3">
                       {t.menu}
@@ -177,20 +191,6 @@ function App() {
                         <MenuItem key={item.id} item={item} dispatch={dispatch} />
                       ))}
                     </div>
-                  </section>
-
-                  <section className="w-full p-4 sm:p-6 lg:p-8 bg-stripe-gray rounded-2xl shadow hover:shadow-lg transition-shadow border border-stripe-gray2 flex flex-col justify-between lg:col-span-1 xl:col-span-1 2xl:col-span-1">
-                    {state.order.length ? (
-                      <>
-                        <OrderContents order={state.order} dispatch={dispatch} t={t} tip={state.tip} discount={state.discount} />
-                      </>
-                    ) : (
-                      <div className="flex flex-1 items-center justify-center h-full">
-                        <p className="text-center text-stripe-gray3 text-lg">
-                          {t.emptyOrder}
-                        </p>
-                      </div>
-                    )}
                   </section>
                 </main>
               }

@@ -20,56 +20,56 @@ const menuDataEn: Record<string, MenuItem[]> = {
       id: 3,
       name: "Diavola Pizza",
       price: 13.50,
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-003.webp",
       description: "Tomato, mozzarella, spicy salami, and chili pepper."
     },
     {
       id: 4,
       name: "Four Cheese Pizza",
       price: 15.00,
-      image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-004.webp",
       description: "Mozzarella, gorgonzola, provolone, and parmesan."
     },
     {
       id: 5,
       name: "Vegetarian Pizza",
       price: 13.00,
-      image: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-005.webp",
       description: "Tomato, mozzarella, and a selection of seasonal vegetables."
     },
     {
       id: 6,
       name: "Carbonara Pizza",
       price: 14.50,
-      image: "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-006.webp",
       description: "Cream, mozzarella, bacon, egg, and black pepper."
     },
     {
       id: 7,
       name: "Capricciosa Pizza",
       price: 14.80,
-      image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-007.webp",
       description: "Tomato, mozzarella, cooked ham, mushrooms, artichokes, and black olives."
     },
     {
       id: 8,
       name: "Tuna and Onion Pizza",
       price: 13.00,
-      image: "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-008.webp",
       description: "Tomato, mozzarella, tuna, and red onion."
     },
     {
       id: 9,
       name: "White Pizza with Potato and Rosemary",
       price: 12.00,
-      image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-009.webp",
       description: "Mozzarella, thinly sliced potatoes, and fresh rosemary."
     },
     {
       id: 10,
       name: "Classic Calzone",
       price: 13.80,
-      image: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
+      image: "images/menu/pizzas/pizza-010.webp",
       description: "Tomato, mozzarella, cooked ham, and mushrooms, folded and baked."
     }
   ],

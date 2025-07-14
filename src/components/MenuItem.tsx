@@ -14,24 +14,24 @@ export default function MenuItem({ item, dispatch }: MenuItemProps) {
   return (
     <div className="bg-white border border-stripe-gray2 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden">
       {/* Imagen del producto */}
-      <div className="relative aspect-square overflow-hidden">
+      <button
+        type="button"
+        className="relative aspect-square overflow-hidden w-full focus:outline-none focus:ring-2 focus:ring-stripe-blue focus:ring-offset-2 rounded-t-xl"
+        onClick={() => dispatch({ type: 'add-item', payload: { item } })}
+        aria-label={`Añadir ${item.name} al pedido`}
+      >
         <img
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-200 cursor-pointer"
         />
-        {/* Botón de añadir superpuesto */}
-        <button
-          type="button"
-          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-stripe-blue rounded-full shadow-lg hover:bg-stripe-dark transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-stripe-blue"
-          onClick={() => dispatch({ type: 'add-item', payload: { item } })}
-          aria-label={`Añadir ${item.name}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-white">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-        </button>
-      </div>
+        {/* Overlay sutil para indicar que es clickeable */}
+        <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
+          <div className="opacity-0 hover:opacity-100 transition-opacity duration-200 bg-stripe-blue/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+            Añadir
+          </div>
+        </div>
+      </button>
 
       {/* Información del producto */}
       <div className="p-3">

@@ -24,7 +24,7 @@ export default {
   entrantes: "Entrantes",
   bebidas: "Bebidas",
   postres: "Postres",
-  order: "Pedido",
+  order: "Ticket",
   add: "Añadir",
   remove: "Eliminar",
   total: "Total",
