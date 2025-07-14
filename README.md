@@ -2,7 +2,9 @@
 <div align="center">
 
 <img src="public/images/logo.svg" alt="POS Plus Logo" width="120"/>
+
 # POS +  (React Point of Sale)
+
 **A modern Point of Sale (POS) application built with React, TypeScript and Tailwind CSS**
 
 [![React](https://img.shields.io/badge/React-18.3.1-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
@@ -10,7 +12,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-5.0+-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 
-[🚀 Live Demo](#) | [📖 Documentation](#key-features) | [🛠️ Installation](#installation-and-setup)
+[🚀 Live Demo](https://posplus.netlify.app/) | [📖 Documentation](#key-features) | [🛠️ Installation](#installation-and-setup)
 
 </div>
 
