@@ -185,7 +185,7 @@ function App() {
                   <section className="w-full p-4 sm:p-6 lg:p-8 bg-stripe-gray rounded-2xl shadow hover:shadow-lg transition-shadow border border-stripe-gray2 flex flex-col justify-between lg:col-span-1 xl:col-span-1 2xl:col-span-1">
                     {state.order.length ? (
                       <>
-                        <OrderContents order={state.order} dispatch={dispatch} t={t} />
+                        <OrderContents order={state.order} dispatch={dispatch} t={t} tip={state.tip} />
                         <TipPercentageForm dispatch={dispatch} tip={state.tip} t={t} />
                         <OrderTotals
                           order={state.order}

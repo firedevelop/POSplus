@@ -7,11 +7,29 @@ interface OrderContentsProps {
   order: OrderItem[]
   dispatch: Dispatch<OrderActions>
   t: any
+  tip?: number
 }
 
-const OrderContents = ({ order, dispatch, t }: OrderContentsProps) => {
+const OrderContents = ({ order, dispatch, t, tip = 0 }: OrderContentsProps) => {
+  const subTotal = order.reduce((total, item) => total + item.quantity * item.price, 0)
+  const tipAmount = subTotal * (tip / 100)
+  const total = subTotal + tipAmount
+
   return (
     <div>
+      {/* Totales movidos arriba */}
+      <div className="space-y-3 mb-6">
+        <p>
+          <h2 className="text-2xl font-black">Total: {formatCurrency(total)}</h2>
+        </p>        
+        <p>
+          Subtotal a pagar: <span className="font-bold">{formatCurrency(subTotal)}</span>
+        </p>
+        <p>
+          Propina: <span className="font-bold">{formatCurrency(tipAmount)}</span>
+        </p>
+      </div>
+      
       <h2 className="text-4xl font-black">{t.order}</h2>
       <div className="mt-10 space-y-3">
         {order.map((item) => (
