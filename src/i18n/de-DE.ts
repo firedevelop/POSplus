@@ -37,7 +37,7 @@ export default {
   creditsDescripcion: "Entwickelt von Ihrem Team. Bilder von Unsplash und Pexels. Tipify © 2025.",
   ticket: {
     title: "BELEG",
-    header: "POS PLUS",
+    header: "POS +",
     salesTicket: "VERKAUFSBELEG",
     subtotal: "ZWISCHENSUMME:",
     discount: "RABATT",

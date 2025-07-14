@@ -81,6 +81,9 @@ const Credits = ({ t }: CreditsProps) => {
           Photo by <a href="https://unsplash.com/@1clickaf?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" className={linkClass}>1Click</a> on <a href="https://unsplash.com/photos/a-close-up-of-a-plate-of-food-on-a-table-wXYlh6KJqG0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" className={linkClass}>Unsplash</a>
         </li>
         <li>
+          Photo by <a href="https://unsplash.com/@kedibilla?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">jason roy</a> on <a href="https://unsplash.com/photos/a-white-bowl-filled-with-rice-and-nuts-LU2U_p3JMdY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+       </li>
+        <li>
           Photo by <a href="https://unsplash.com/@fryfamilyfoodco?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" className={linkClass}>The Fry Family Food Co.</a> on <a href="https://unsplash.com/photos/a-tray-of-food-with-chopsticks-and-dipping-sauce-enryqd8xpIQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" className={linkClass}>Unsplash</a>
         </li>
         <li>

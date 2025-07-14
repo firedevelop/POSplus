@@ -37,7 +37,7 @@ export default {
   backHome: "Torna alla home",
   ticket: {
     title: "SCONTRINO",
-    header: "POS PLUS",
+    header: "POS +",
     salesTicket: "SCONTRINO DI VENDITA",
     subtotal: "SUBTOTALE:",
     discount: "SCONTO",

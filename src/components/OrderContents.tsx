@@ -10,9 +10,10 @@ interface OrderContentsProps {
   t: any
   tip?: number
   discount?: number
+  template?: any
 }
 
-const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderContentsProps) => {
+const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0, template }: OrderContentsProps) => {
   const subTotal = order.reduce((total, item) => total + item.quantity * item.price, 0)
   const discountAmount = subTotal * (discount / 100)
   const discountedSubTotal = subTotal - discountAmount
@@ -41,12 +42,12 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
   return (
     <div>
       {/* Totales movidos arriba - con estilo distintivo */}
-      <div className="bg-gradient-to-br from-lime-50 to-yellow-50 rounded-lg p-4 mb-6 border-2 border-lime-600 shadow-lg">
-        <h3 className="text-lg font-bold bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent mb-3">Resumen</h3>
+      <div className={`bg-gradient-to-br ${template?.colors?.bg || 'from-lime-50 to-yellow-50'} rounded-lg p-4 mb-6 border-2 ${template?.colors?.border || 'border-lime-600'} shadow-lg`}>
+        <h3 className={`text-lg font-bold bg-gradient-to-r ${template?.colors?.primary || 'from-lime-600 to-yellow-500'} bg-clip-text text-transparent mb-3`}>Resumen</h3>
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-gray-700">Subtotal:</span>
-            <span className="font-bold text-lg text-lime-700">{formatCurrency(subTotal)}</span>
+            <span className={`font-bold text-lg ${template?.colors?.text || 'text-lime-700'}`}>{formatCurrency(subTotal)}</span>
           </div>
           {discount > 0 && (
             <div className="flex justify-between items-center text-red-600">
@@ -58,17 +59,17 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
             <span className="text-gray-700">Propina:</span>
             <span className="font-bold text-lg text-green-600">{formatCurrency(tipAmount)}</span>
           </div>
-          <hr className="border-lime-200" />
+          <hr className={`${template?.colors?.border || 'border-lime-200'}`} />
           <div className="flex justify-between items-center">
-            <span className="text-xl font-black bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent">Total:</span>
-            <span className="text-2xl font-black bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent">{formatCurrency(total)}</span>
+            <span className={`text-xl font-black bg-gradient-to-r ${template?.colors?.primary || 'from-lime-600 to-yellow-500'} bg-clip-text text-transparent`}>Total:</span>
+            <span className={`text-2xl font-black bg-gradient-to-r ${template?.colors?.primary || 'from-lime-600 to-yellow-500'} bg-clip-text text-transparent`}>{formatCurrency(total)}</span>
           </div>
         </div>
       </div>
 
       {/* Formulario de descuentos */}
       <div className="mb-6 space-y-5">
-        <label className="block text-stripe-dark font-medium mb-1 text-lg">
+        <label className="block text-gray-800 font-medium mb-1 text-lg">
           Porcentaje de descuento
         </label>
         <form className="flex flex-wrap gap-2 items-center" onSubmit={e => e.preventDefault()}>
@@ -107,7 +108,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
                 dispatch({ type: 'add-discount', payload: { value: value === '' ? 0 : Number(value) } })
               }
             }}
-            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition"
+            className={`ml-2 w-20 border ${template?.colors?.border || 'border-lime-300'} rounded-lg px-3 py-2 bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition`}
             placeholder="Otro"
           />
         </form>
@@ -115,7 +116,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
 
       {/* Formulario de propina */}
       <div className="mb-6 space-y-5">
-        <label className="block text-stripe-dark font-medium mb-1 text-lg">
+        <label className="block text-gray-800 font-medium mb-1 text-lg">
           Porcentaje de propina
         </label>
         <form className="flex flex-wrap gap-2 items-center" onSubmit={e => e.preventDefault()}>
@@ -154,7 +155,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
                 dispatch({ type: 'add-tip', payload: { value: value === '' ? 0 : Number(value) } })
               }
             }}
-            className="ml-2 w-20 border border-stripe-gray2 rounded-lg px-3 py-2 bg-white text-stripe-dark placeholder-stripe-gray3 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition"
+            className={`ml-2 w-20 border ${template?.colors?.border || 'border-lime-300'} rounded-lg px-3 py-2 bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 transition`}
             placeholder="Otro"
           />
         </form>
@@ -164,7 +165,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
       <div className="mb-6">
         <button
           type="button"
-          className="w-full bg-stripe-blue text-white font-semibold py-2 rounded-lg shadow-sm hover:bg-stripe-dark transition-colors focus:outline-none focus:ring-2 focus:ring-stripe-blue focus:ring-offset-2"
+          className={`w-full bg-gradient-to-r ${template?.colors?.primary || 'from-lime-600 to-yellow-500'} text-white font-semibold py-3 rounded-lg shadow-lg hover:${template?.colors?.primaryHover || 'from-lime-700 to-yellow-600'} transition-all duration-300 focus:outline-none focus:ring-4 ${template?.colors?.ring || 'focus:ring-lime-300'} focus:ring-offset-2 transform hover:scale-105`}
           onClick={() => {
             const orderNumber = Math.floor(100 + Math.random() * 900)
             dispatch({ type: 'reset-order' })
@@ -176,7 +177,7 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
       </div>
       
       {/* TICKET TÉRMICO POS */}
-      <h2 className="text-2xl font-black mb-4">{t.ticket.title}</h2>
+      <h2 className={`text-2xl font-black mb-4 bg-gradient-to-r ${template?.colors?.primary || 'from-lime-600 to-yellow-500'} bg-clip-text text-transparent`}>{t.ticket.title}</h2>
       <div className="bg-white border border-gray-300 shadow-lg p-6 font-mono text-base max-w-sm mx-auto">
         {/* Encabezado del ticket */}
         <div className="text-center mb-4 border-b border-dotted border-gray-400 pb-4">
