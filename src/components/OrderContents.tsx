@@ -41,12 +41,12 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
   return (
     <div>
       {/* Totales movidos arriba - con estilo distintivo */}
-      <div className="bg-white rounded-lg p-4 mb-6 border-2 border-stripe-blue shadow-sm">
-        <h3 className="text-lg font-bold text-stripe-blue mb-3">Resumen</h3>
+      <div className="bg-gradient-to-br from-lime-50 to-yellow-50 rounded-lg p-4 mb-6 border-2 border-lime-600 shadow-lg">
+        <h3 className="text-lg font-bold bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent mb-3">Resumen</h3>
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-stripe-gray3">Subtotal:</span>
-            <span className="font-bold text-lg">{formatCurrency(subTotal)}</span>
+            <span className="text-gray-700">Subtotal:</span>
+            <span className="font-bold text-lg text-lime-700">{formatCurrency(subTotal)}</span>
           </div>
           {discount > 0 && (
             <div className="flex justify-between items-center text-red-600">
@@ -55,13 +55,13 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
             </div>
           )}
           <div className="flex justify-between items-center">
-            <span className="text-stripe-gray3">Propina:</span>
+            <span className="text-gray-700">Propina:</span>
             <span className="font-bold text-lg text-green-600">{formatCurrency(tipAmount)}</span>
           </div>
-          <hr className="border-stripe-gray2" />
+          <hr className="border-lime-200" />
           <div className="flex justify-between items-center">
-            <span className="text-xl font-black text-stripe-blue">Total:</span>
-            <span className="text-2xl font-black text-stripe-blue">{formatCurrency(total)}</span>
+            <span className="text-xl font-black bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent">Total:</span>
+            <span className="text-2xl font-black bg-gradient-to-r from-lime-600 to-yellow-500 bg-clip-text text-transparent">{formatCurrency(total)}</span>
           </div>
         </div>
       </div>
@@ -175,34 +175,86 @@ const OrderContents = ({ order, dispatch, t, tip = 0, discount = 0 }: OrderConte
         </button>
       </div>
       
-      <h2 className="text-4xl font-black">{t.order}</h2>
-      <div className="mt-10 space-y-3">
-        {order.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center justify-between py-5 border-t border-gray-200 last-of-type:border-b"
-          >
-            <div>
-              <p className="text-lg">
-                {item.name} - {formatCurrency(item.price)}
-              </p>
-              <p className="font-black">
-                {t.add}: {item.quantity} - {formatCurrency(item.price * item.quantity)}
-              </p>
-            </div>
-            <button
-              className="w-8 h-8 flex items-center justify-center bg-red-100 rounded-full hover:bg-red-200 transition"
-              onClick={() =>
-                dispatch({ type: 'remove-item', payload: { id: item.id } })
-              }
-              aria-label={t.remove}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-red-600">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-              </svg>
-            </button>
+      {/* TICKET TÉRMICO POS */}
+      <h2 className="text-2xl font-black mb-4">{t.ticket.title}</h2>
+      <div className="bg-white border border-gray-300 shadow-lg p-6 font-mono text-base max-w-sm mx-auto">
+        {/* Encabezado del ticket */}
+        <div className="text-center mb-4 border-b border-dotted border-gray-400 pb-4">
+          <div className="text-lg font-bold">{t.ticket.header}</div>
+          <div className="text-sm text-gray-600">{t.ticket.salesTicket}</div>
+          <div className="text-sm text-gray-600">
+            {new Date().toLocaleDateString('es-ES')} {new Date().toLocaleTimeString('es-ES')}
           </div>
-        ))}
+        </div>
+
+        {/* Lista de productos */}
+        <div className="mb-4">
+          {order.map((item, index) => (
+            <div key={item.id} className="mb-3">
+              <div className="flex justify-between items-start">
+                <div className="flex-1 pr-2">
+                  <div className="text-sm font-semibold uppercase tracking-wide">{item.name}</div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    {item.quantity} {t.ticket.quantity} {formatCurrency(item.price)}
+                  </div>
+                </div>
+                <div className="text-right flex flex-col items-end">
+                  <div className="font-bold text-base">{formatCurrency(item.price * item.quantity)}</div>
+                  <button
+                    className="text-red-600 hover:text-red-800 mt-1 w-6 h-6 flex items-center justify-center"
+                    onClick={() => dispatch({ type: 'remove-item', payload: { id: item.id } })}
+                    aria-label={t.remove}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              {index < order.length - 1 && (
+                <div className="border-b border-dotted border-gray-300 mt-2"></div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Línea separadora */}
+        <div className="border-b border-dotted border-gray-400 my-4"></div>
+
+        {/* Subtotales */}
+        <div className="space-y-1 text-sm">
+          <div className="flex justify-between">
+            <span>{t.ticket.subtotal}</span>
+            <span>{formatCurrency(subTotal)}</span>
+          </div>
+          
+          {discount > 0 && (
+            <div className="flex justify-between text-red-600">
+              <span>{t.ticket.discount} ({discount}%):</span>
+              <span>-{formatCurrency(discountAmount)}</span>
+            </div>
+          )}
+          
+          <div className="flex justify-between text-green-600">
+            <span>{t.ticket.tip} ({tip}%):</span>
+            <span>+{formatCurrency(tipAmount)}</span>
+          </div>
+        </div>
+
+        {/* Línea separadora doble */}
+        <div className="border-b-2 border-double border-gray-600 my-3"></div>
+
+        {/* Total */}
+        <div className="flex justify-between text-lg font-bold mb-4">
+          <span>{t.ticket.total}</span>
+          <span>{formatCurrency(total)}</span>
+        </div>
+
+        {/* Pie del ticket */}
+        <div className="text-center text-sm text-gray-500 border-t border-dotted border-gray-400 pt-4">
+          <div>{t.ticket.thankYou}</div>
+          <div className="mt-1">{t.ticket.ticketNumber}{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</div>
+        </div>
       </div>
     </div>
   )

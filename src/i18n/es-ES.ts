@@ -38,5 +38,18 @@ export default {
   orderSaved: "¡Pedido guardado!",
   orderIs: "Tu número de pedido es:",
   backHome: "Volver al inicio",
+  ticket: {
+    title: "TICKET",
+    header: "POS PLUS",
+    salesTicket: "TICKET DE VENTA",
+    subtotal: "SUBTOTAL:",
+    discount: "DESCUENTO",
+    tip: "PROPINA",
+    total: "TOTAL:",
+    thankYou: "¡GRACIAS POR SU COMPRA!",
+    ticketNumber: "TICKET #",
+    remove: "[ELIMINAR]",
+    quantity: "x"
+  }
   // ...otros textos
 }
