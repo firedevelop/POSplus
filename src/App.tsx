@@ -147,7 +147,7 @@ function App() {
           </div>
         </nav>
         {/* --- Fin menú navegación superior --- */}
-        
+
           <Routes>
             <Route
               path="/"
@@ -172,7 +172,7 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    <div className="space-y-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4">
                       {currentMenu.map((item: MenuItemType) => (
                         <MenuItem key={item.id} item={item} dispatch={dispatch} />
                       ))}

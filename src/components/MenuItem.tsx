@@ -12,56 +12,66 @@ export default function MenuItem({ item, dispatch }: MenuItemProps) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white border border-stripe-gray2 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-      <button
-        type="button"
-        className="w-full flex items-center justify-between px-4 py-3 focus:outline-none"
-        onClick={() => setOpen(o => !o)}
-        aria-expanded={open}
-        aria-controls={`desc-${item.id}`}
-      >
-        <div className="flex items-center gap-3 text-left flex-1">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-12 h-12 object-cover rounded-full border border-stripe-gray2"
-          />
-          <div>
-            <h3 className="text-stripe-dark font-semibold text-lg">{item.name}</h3>
-            <p className="text-stripe-gray3 text-sm">{formatCurrency(item.price)}</p>
-          </div>
-        </div>
+    <div className="bg-white border border-stripe-gray2 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden">
+      {/* Imagen del producto */}
+      <div className="relative aspect-square overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+        />
+        {/* Botón de añadir superpuesto */}
         <button
           type="button"
-          className="w-10 h-10 flex items-center justify-center bg-stripe-blue rounded-full shadow-sm hover:bg-stripe-dark transition-colors focus:outline-none focus:ring-2 focus:ring-stripe-blue focus:ring-offset-2 ml-2"
-          onClick={e => {
-            e.stopPropagation()
-            dispatch({ type: 'add-item', payload: { item } })
-          }}
-          aria-label="Añadir"
+          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-stripe-blue rounded-full shadow-lg hover:bg-stripe-dark transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-stripe-blue"
+          onClick={() => dispatch({ type: 'add-item', payload: { item } })}
+          aria-label={`Añadir ${item.name}`}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-white">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
         </button>
-        <svg
-          className={`w-5 h-5 ml-2 text-stripe-blue transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
+      </div>
+
+      {/* Información del producto */}
+      <div className="p-3">
+        <h3 className="text-stripe-dark font-semibold text-sm sm:text-base mb-1 line-clamp-2 leading-tight">
+          {item.name}
+        </h3>
+        <p className="text-stripe-blue font-bold text-lg mb-2">
+          {formatCurrency(item.price)}
+        </p>
+        
+        {/* Botón para ver descripción */}
+        <button
+          type="button"
+          className="w-full flex items-center justify-center gap-1 text-stripe-gray3 hover:text-stripe-blue text-xs transition-colors focus:outline-none"
+          onClick={() => setOpen(o => !o)}
+          aria-expanded={open}
+          aria-controls={`desc-${item.id}`}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {open && (
-        <div
-          id={`desc-${item.id}`}
-          className="px-4 pb-3 text-stripe-dark text-sm"
-        >
-          {item.description}
-        </div>
-      )}
+          <span>Ver detalles</span>
+          <svg
+            className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        
+        {/* Descripción expandible */}
+        {open && (
+          <div
+            id={`desc-${item.id}`}
+            className="mt-2 pt-2 border-t border-stripe-gray2 text-stripe-dark text-xs leading-relaxed"
+          >
+            {item.description}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
