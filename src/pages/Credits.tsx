@@ -13,6 +13,9 @@ const Credits = ({ t }: CreditsProps) => {
 
       <h3 className="text-xl font-semibold mt-8 mb-2">License</h3>
       <p>This project is licensed under the MIT License.</p>
+      <p>Mockup. Photo by <a href="https://unsplash.com/@tuqa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Tuqa Nabi</a> on <a href="https://unsplash.com/photos/a-person-pouring-olive-oil-on-a-pizza-AgiUMlpPz6M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      </p>
+      
       <p>
         Icons by{" "}
         <a
