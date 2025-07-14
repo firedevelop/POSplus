@@ -1,10 +1,8 @@
 
-# 🍕 POS Plus - Modern Point of Sale System
-
 <div align="center">
 
 <img src="public/images/logo.svg" alt="POS Plus Logo" width="120"/>
-
+# POS +  (React Point of Sale)
 **A modern Point of Sale (POS) application built with React, TypeScript and Tailwind CSS**
 
 [![React](https://img.shields.io/badge/React-18.3.1-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
@@ -21,8 +19,8 @@
   <img src="public/images/POSplus-mockup.png" alt="Tipify Screenshot 1" width="700"/>
   <img src="public/images/screen-004.png" alt="POS plus Screenshot 1" width="700"/>
 <img src="public/images/screen-005.png" alt="POS plus Screenshot 2" width="700"/>
-<img src="public/images/screen-006.png" alt="POS plus Screenshot 3" width="700"/>
-<img src="public/images/screen-007.png" alt="POS plus Screenshot 4" width="700"/>
+<img src="public/images/screen-006.png" alt="POS plus Screenshot 3" width="300"/>
+<img src="public/images/screen-007.png" alt="POS plus Screenshot 4" width="300"/>
 <img src="public/images/screen-008.png" alt="POS plus Screenshot 5" width="300"/>
 <img src="public/images/screen-009.png" alt="POS plus Screenshot 6" width="300"/></p>
 
